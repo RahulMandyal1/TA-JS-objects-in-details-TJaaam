@@ -13,7 +13,7 @@ function createUser(name,age){
     
 
     user.sayHello  = function(){
-        alert( `Welcome {user.name}`);
+        alert( `Welcome ${user.name}`);
     }
     return user;
 }
@@ -29,7 +29,7 @@ function createUser(name,age){
 }
 createUser.prototype ={
     sayHello  : function(){
-        alert( `Welcome {user.name}`);
+        alert( `Welcome ${user.name}`);
     }
 }
 // 5. Convert the `createUser` function into Pseudoclassical pattern of object creation. Use `F.prototype` to store the methods. `F.prototype` means storing the methods in prototype property of the function.
@@ -39,7 +39,7 @@ function createUser(name,age){
 }
 createUser.prototype ={
     sayHello :function(){
-        alert( `Welcome {this.name}`);
+        alert( `Welcome ${this.name}`);
     }
 }
 // 6. Use `new` to create two new objects with the data of two different person and re-assign the value of `personOne` and `personTwo`.
@@ -47,8 +47,8 @@ createUser.prototype ={
 personOne = new createUser("Rahul thakur",19);
 personTwo = new createUser("Vishal thakur",19);
 // 7. Try calling `personOne.sayHello()` and `personTwo.sayHello()`. Check if you get the required output.
-personOne.sayHello(); // not printing the user name  but alerting  fine
-personTwo.sayHello(); // 
+personOne.sayHello(); //working fine
+personTwo.sayHello(); // same here 
 // 8. Convert the `createUser` function into `User` class.
 class createUser{
     constructor(name, age){
@@ -56,7 +56,7 @@ class createUser{
            this.age  = age;
     }
     sayHello(){
-            alert( `Welcome {this.name}`);
+            alert( `Welcome ${this.name}`);
        }
    }
    
@@ -64,5 +64,5 @@ class createUser{
 let personOne = new createUser("Rahul thakur",19);
 let personTwo = new createUser("Vishal thakur",19);
 // 10. Try calling `personOne.sayHello()` and `personTwo.sayHello()`. Check if you get the required output.
-personOne.sayHello();// do not  working  not printing the user name but alerting properly
-personTwo.sayHello(); // same in this case
+personOne.sayHello();// workingfine
+personTwo.sayHello(); 
