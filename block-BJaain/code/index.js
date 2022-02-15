@@ -1,15 +1,15 @@
-console.log(this.document === document); // Output
+console.log(this.document === document); //  true
 
 // ------------
 
-console.log(this === window); //Output
+console.log(this === window); // ture
 
 // ------------
 
 var myFunction = function () {
   console.log(this);
 };
-myFunction(); // Output
+myFunction(); // print  the whole window object  
 
 // ------------
 
@@ -17,7 +17,7 @@ function f1() {
   'use strict';
   return this;
 }
-console.log(f1() === window); //Output
+console.log(f1() === window); // false
 
 // ------------
 
@@ -26,7 +26,8 @@ function foo() {
   console.log(this === window);
 }
 
-foo(); //Output ??
+foo(); // 'Simple functio call'
+       // true
 
 // ------------
 
@@ -34,17 +35,17 @@ foo(); //Output ??
 (function () {
   console.log('Anonymous function invocation');
   console.log(this === window);
-})(); //Output
-
-// ------------
+})(); // 
+// Anonymous function invocation
+// true
 
 var myObject = {};
 myObject.someMethod = function () {
   console.log(this);
 };
-myObject.someMethod(); //Value Of This
-
-// ------------
+myObject.someMethod(); 
+// logs the myObject  
+// {someMethod: ƒ}
 
 function Person(fn, ln) {
   this.firstName = fn;
@@ -55,10 +56,12 @@ function Person(fn, ln) {
   };
 }
 
-let person = new Person('John', 'Reed');
-person.displayName(); // Output
-let person2 = new Person('Paul', 'Adams');
-person2.displayName(); // Output
+let person = new Person('John', 'Reed'); // creteas a new object automatically and return that obejct 
+// value of this would be  that object which new keyword creates
+person.displayName(); // Name : John Reed
+let person2 = new Person('Paul', 'Adams');// creteas a new object automatically and return that obejct 
+// value of this would be  that object which new keyword creates
+person2.displayName(); //Name : Paul Adams
 
 // ------------
 
@@ -76,10 +79,11 @@ let user = {
   },
 };
 
-user.foo(); // Output
-let fun1 = user.foo1;
-fun1(); // Output ??
-user.foo1(); // Output ??
+user.foo(); //  logs Simple function call 
+            // false
+let fun1 = user.foo1; // true;
+fun1(); // not defined reference error
+user.foo1(); // false
 
 // ------------
 
@@ -91,13 +95,13 @@ var obj = {
   },
 };
 
-obj.getX(); // Output ??
+obj.getX(); 81
 
 var retrieveX = obj.getX;
-retrieveX(); //Output ??
+retrieveX();  //9
 
 var boundGetX = retrieveX.bind(obj);
-boundGetX(); // Output ??
+boundGetX(); // 81
 
 // ------------
 
@@ -111,11 +115,11 @@ function Person(fn, ln) {
 }
 
 let person = new Person('John', 'Reed');
-person.displayName(); // Output
+person.displayName(); // Name John Reed
 let person2 = new Person('Paul', 'Adams');
-person2.displayName(); // Output
+person2.displayName(); // Name Paul Adams
 
-person.displayName.call(person2); // Output ??
+person.displayName.call(person2); // Paul Admas 
 
 // ------------
 
@@ -128,28 +132,28 @@ const obj = {
     return this;
   },
 };
-obj.getThis3 = obj.getThis.bind(obj);
-obj.getThis4 = obj.getThis2.bind(obj);
+obj.getThis3 = obj.getThis.bind(obj);//this do not have any value
+obj.getThis4 = obj.getThis2.bind(obj); // return this keyword 
 
 // Output
-obj.getThis();
+obj.getThis(); //  Return the global window object
 
 // Output
 obj.getThis.call(a);
-
-// Output
+// returns the global window object
 obj.getThis2();
 
-// Output
+// retuns the obj obejct itself 
+//{getThis: ƒ, getThis2: ƒ, getThis3: ƒ, getThis4: ƒ}
 obj.getThis2.call(a);
-
-// Output
+// Returns the a object
+//{a: 'a'}
 obj.getThis3();
 
-// Output
+// Returns the  window object 
+//Window {0: global, window: Window, self: Window, document: document, name: '', location: Location, …}
 obj.getThis4();
-
-// -------------
+// Returns  the obj  object //{getThis: ƒ, getThis2: ƒ, getThis3: ƒ, getThis4: ƒ}
 
 let person = {
   name: 'Jay',
@@ -158,11 +162,12 @@ let person = {
   },
 };
 
-person.greet(); // output
+person.greet(); // logs hello Jay 
 
 let greet = person.greet;
-greet(); // output
+greet(); //  hello , 
 
+// hello ,
 // -------------
 
 let name = 'Jay Global';
@@ -178,14 +183,14 @@ let person = {
     return this.name;
   },
 };
-console.log(person.details.print()); // output?
-console.log(person.print()); // output?
+console.log(person.details.print()); //  Jay Details
+console.log(person.print()); // Jay Person
 
-let name1 = person.print;
+let name1 = person.print;// 
 let name2 = person.details;
 
-console.log(name1()); // output?
-console.log(name2.print()); // output?
+console.log(name1()); //  prints noting
+console.log(name2.print()); // prints Jay detail
 
 // --------
 
@@ -199,7 +204,7 @@ let outerFn = function () {
   return innerFn;
 };
 
-outerFn()();
+outerFn()(); //innerItem is not defined
 
 // -----------
 
@@ -210,7 +215,7 @@ let object = {
     console.log('this inside of outerFn double()');
     console.log(this);
     return this.data.map(function (item) {
-      console.log(this); // Output ???
+      console.log(this); // logs window gloabl object
       return item * 2;
     });
   },
@@ -218,8 +223,8 @@ let object = {
     console.log('this inside of outerFn doubleArrow()');
     console.log(this);
     return this.dataDouble.map((item) => {
-      console.log(this); // Output ???
-      return item * 2;
+      console.log(this); // Output logs   object
+      return item * 2;// 
     });
   },
 };
@@ -238,7 +243,7 @@ function print() {
 }
 
 let printNameBob = print.bind(bobObj);
-console.log(printNameBob()); // output??
+console.log(printNameBob()); // Bob
 
 // -------------------
 
@@ -257,9 +262,9 @@ let obj2 = {
 };
 
 let getSecondData = obj2.printSecondData.bind(obj1);
-console.log(getSecondData()); // Output and why ???
+console.log(getSecondData()); // 2
 
-// --------------
+// Becuase we  are explicitely passing the this value = obj1
 
 const call = {
   caller: 'mom',
@@ -268,9 +273,10 @@ const call = {
   },
 };
 
-call.says(); // output ???
+call.says(); // Hey mom just called
 
-// -----------------
+//Becuase  if there is a object on the left of  a function the value of this should be that object
+// Rule says Default binding
 
 const call = {
   caller: 'mom',
@@ -281,7 +287,12 @@ const call = {
 
 let newCall = call.says;
 
-newCall(); // output ???
+newCall();  // Hey undefined  just called
+
+// this is becuase we are storing the vaulue inside a variable and then callign that function so 
+// new function execution is created so that does not have value of this so by defalt it point  to
+//the window so it start finding in the window obejct but it does not find that property value so 
+// it prints undefined
 
 //  -----------------
 
@@ -299,4 +310,9 @@ const call = {
 
 let newCall = call.anotherCaller;
 
-newCall(); // output ??
+newCall(); // undefined called, too!
+
+// this is becuase we are storing the vaulue inside a variable and then callign that function so 
+// new function execution is created so that does not have value of this so by defalt it point  to
+//the window so it start finding in the window obejct but it does not find that property value so 
+// it prints undefined
