@@ -62,9 +62,10 @@ class Square {
     get area(){
         return `${this.width*this.height}`;
     };
-    set area(area){
-        this.width = area/2;
-        this.height =area;
+    set area(value){
+        let side = Math.sqrt(value);
+        this.width = side;
+        this.height = side;
     };
  }
 // - Create a static method named `isEqual` which accepts two `square` object with `width` and `height` property. If the area of both square is same it will return `true` or `false`.
@@ -82,11 +83,12 @@ class Square {
     get area(){
         return `${this.width*this.height}`;
     };
-    set area(side){
+    set area(value){
+        let side = Math.sqrt(value);
         this.width = side;
         this.height = side;
     };
-    isEqual(obj1,obj2){
+     static isEqual(obj1,obj2){
         let area = obj1.width * obj1.height;
         let area2 = obj2.width * obj2.width;
         if(area === area2){
@@ -105,7 +107,7 @@ firstInstance.area;
 secondInsatance.area;
 
 // - Check the `isEqual` method and pass the two instance you created above.
-firstInstance.isEqual(firstInstance,secondInsatance);
+Square.isEqual(firstInstance,secondInsatance);
 // ## User Class
 class User {
   
