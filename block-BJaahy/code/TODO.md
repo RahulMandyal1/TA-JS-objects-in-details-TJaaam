@@ -1,15 +1,72 @@
 # More about class
 
 - Create a class named `Square` which accepts one parameter `side` and will set two property `width` and `height` to the value of `side`.
+class Square {
+    constructor(side){
+        this.width = side;
+        this.height = side;
+    }
 
+}
 - Add a method name `description` that will alert a message saying `The square is ${width} x ${height}`
-
+class Square {
+    constructor(side){
+        this.width = side;
+        this.height = side;
+    }
+    description(){
+        alert(`The square is ${width}x ${height}`);
+    }
+}
 - Create a method inside the class named `calcArea` that will return the area of the square.
-
+class Square {
+    constructor(side){
+        this.width = side;
+        this.height = side;
+    }
+    description(){
+        alert(`The square is ${this.width}x ${this.height}`);
+    };
+    clacArea(){
+        return ` Area of square is ${this.width*this.height}}`;
+    }
+}
 - Create a `area` getter method using which we can get the area of the square.
-
+class Square {
+    constructor(side){
+        this.width = side;
+        this.height = side;
+    }
+    description(){
+        alert(`The square is ${this.width}x ${this.height}`);
+    };
+    clacArea(){
+        return ` Area of square is ${this.width*this.height}}`;
+    };
+    get areaOfSquare{
+        return this.calcArea();
+    }
+}
 - Create a `area` setter method that will accept the area of the square. Based on the value of area it will set the value of `width` and `height`.
-
+class Square {
+    constructor(side){
+        this.width = side;
+        this.height = side;
+    }
+    description(){
+        alert(`The square is ${this.width}x ${this.height}`);
+    };
+    clacArea(){
+        return ` Area of square is ${this.width*this.height}}`;
+    };
+    get areaOfSquare(){
+        return this.calcArea();
+    };
+    set areaOfSquare(width,height){
+        this.width = width;
+        this.height = height;
+    }
+}
 - Create a static method named `isEqual` which accepts two `square` object with `width` and `height` property. If the area of both square is same it will return `true` or `false`.
 
 - Create two instance of the `Square` class
