@@ -9,6 +9,8 @@ Properties:
 - `location`
 - `numberOfLegs`
 
+
+
 Methods
 
 - `eat()` - log a message saying `I live in ${location} and I can eat`
