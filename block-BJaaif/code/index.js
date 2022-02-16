@@ -5,14 +5,17 @@
 /*** CHALLENGE 1 of 1 ***/
 
 function makePerson(name, age) {
-  // add code here
+  let obj ={};
+  obj.name = name;
+  obj.age = age;
+  return obj;
 }
 
 var vicky = makePerson('Vicky', 24);
 
 // /********* Uncomment these lines to test your work! *********/
-// console.log(vicky.name); // -> Logs 'Vicky'
-// console.log(vicky.age); // -> Logs 24
+console.log(vicky.name); // -> Logs 'Vicky'
+console.log(vicky.age); // -> Logs 24
 
 /****************************************************************
                        USING OBJECT.CREATE
@@ -21,30 +24,41 @@ var vicky = makePerson('Vicky', 24);
 /*** CHALLENGE 1 of 3 ***/
 
 var personStore = {
-  // add code here
+  greet : function(){
+    console.log('Hello');
+  }
 };
 
 // /********* Uncomment this line to test your work! *********/
-// personStore.greet(); // -> Logs 'hello'
+personStore.greet(); // -> Logs 'hello'
 
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromPersonStore(name, age) {
-  // add code here
+  let obj = Object.create(null);
+  obj.name = name;
+  obj.age  = age ;
+  return obj
 }
-
 var sandra = personFromPersonStore('Sandra', 26);
+Object.setPrototypeOf(sandra , personStore);
+
+
+
 
 // /********* Uncomment these lines to test your work! *********/
-// console.log(sandra.name); // -> Logs 'Sandra'
-// console.log(sandra.age); //-> Logs 26
-// sandra.greet(); //-> Logs 'hello'
+console.log(sandra.name); // -> Logs 'Sandra'
+console.log(sandra.age); //-> Logs 26
+sandra.greet(); //-> Logs 'hello'
+
 
 /*** CHALLENGE 3 of 3 ***/
 
-// add code here
+personStore.introduce = function(){
+  console.log(`hi my name is ${this.name}`);
+}
 
-// sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
+sandra.introduce(); // -> Logs 'Hi, my name is Sandra'
 
 /****************************************************************
                     USING THE 'NEW' KEYWORD
@@ -53,29 +67,39 @@ var sandra = personFromPersonStore('Sandra', 26);
 /*** CHALLENGE 1 of 3 ***/
 
 function PersonConstructor() {
-  // add code here
+  this.greet = function(){
+    console.log("Hello");
+  }
 }
 
-// /********* Uncomment this line to test your work! *********/
-var simon = new PersonConstructor();
-// simon.greet(); // -> Logs 'hello'
 
+/********* Uncomment this line to test your work! *********/
+
+var simon = new PersonConstructor();
+ simon.greet(); // -> Logs 'hello'
 /*** CHALLENGE 2 of 3 ***/
 
 function personFromConstructor(name, age) {
-  // add code here
+   this.name = name ;
+   this.age = age ;
 }
 
-var mike = personFromConstructor('Mike', 30);
+var mike =  new personFromConstructor('Mike', 30);
 
 // /********* Uncomment these lines to test your work! *********/
-// console.log(mike.name); // -> Logs 'Mike'
-// console.log(mike.age); //-> Logs 30
-// mike.greet(); //-> Logs 'hello'
+console.log(mike.name); // -> Logs 'Mike'
+console.log(mike.age); //-> Logs 30
+Object.setPrototypeOf(mike,simon);
+mike.greet(); //-> Logs 'hello'
 
 /*** CHALLENGE 3 of 3 ***/
 // add code here
-
+PersonConstructor.prototype = {
+  introduce(){
+    console.log(`Hi my name is ${this.name}`);
+  }
+}
+Object.setPrototypeOf(mike,simon)
 // mike.introduce(); // -> Logs 'Hi, my name is Mike'
 
 /****************************************************************
@@ -85,25 +109,33 @@ var mike = personFromConstructor('Mike', 30);
 /*** CHALLENGE 1 of 3 ***/
 
 class PersonClass {
-  constructor() {
-    // add code here
+  constructor(name){
+      this.name = name;
   }
-
-  // add code here
+  greet(){
+      console.log('Hello');
+  }
 }
 
 // /********* Uncomment this line to test your work! *********/
 var george = new PersonClass();
-// george.greet(); // -> Logs 'hello'
+george.greet(); // -> Logs 'hello'
 
 /*** CHALLENGE 2 of 3 ***/
-
+class DeveloperClass  extends PersonClass{
+  constructor(name){
+       super(name);
+  }
+  introduce(){
+    console.log(`Hello World my name  is ${this.name}`);
+  }
+}
 // add code here
 
-// /********* Uncomment these lines to test your work! *********/
-// var thai = new DeveloperClass('Thai', 32);
-// console.log(thai.name); // -> Logs 'Thai'
-// thai.introduce(); //-> Logs 'Hello World, my name is Thai'
+/********* Uncomment these lines to test your work! *********/
+var thai = new DeveloperClass('Thai', 32);
+console.log(thai.name); // -> Logs 'Thai'
+thai.introduce(); //-> Logs 'Hello World, my name is Thai'
 
 /****************************************************************
                       EXTENSION: SUBCLASSING
@@ -123,7 +155,9 @@ function userFactory(name, score) {
   return user;
 }
 
-var adminFunctionStore /* Put code here */;
+var adminFunctionStore = Object.create(userFunctionStore);
+
+
 
 function adminFactory(name, score) {
   // Put code here

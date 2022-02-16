@@ -1,8 +1,10 @@
+
 ## Working with Object Literals
 
 #### Challenge 1/1
 
 Create a function that accepts two inputs (name and age) and returns an object. Let's call this function `makePerson`. This function will:
+
 
 1. create an empty object
 2. add a `name` property to the newly created object with its value being the 'name' argument passed into the function
@@ -37,15 +39,18 @@ Create a function `personFromConstructor` that takes as input a `name` and an `a
 
 Without editing the code you've already written, add an `introduce` method to the `PersonConstructor` function that logs "Hi, my name is [name]".
 
+
 ## Using ES6 Classes
 
 #### Challenge 1/2
 
 Create a class `PersonClass`. `PersonClass` should have a constructor that is passed an input of `name` and saves it to a property by the same name. `PersonClass` should also have a method called `greet` that logs the string 'hello'.
 
+
 #### Challenge 2/2
 
 Create a class `DeveloperClass` that creates objects by extending the `PersonClass` class. In addition to having a `name` property and `greet` method, `DeveloperClass` should have an `introduce` method. When called, `introduce` should log the string 'Hello World, my name is [name]'.
+
 
 ## Subclassing
 
