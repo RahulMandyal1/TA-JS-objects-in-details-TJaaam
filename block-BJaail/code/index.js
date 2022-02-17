@@ -1,8 +1,8 @@
 let input = document.querySelector('.btn');
 let bookName = document.querySelector('#title');
 let authorName = document.querySelector('#author');
-let isbnNumber = document.querySelector('#isbn');
-let root = document.querySelector('.showContent-container');
+let isbNumber = document.querySelector('#isbn');
+let root = document.querySelector('.rootEle');
 
 class Book  {
     constructor(booktitle , bookAuthor, bookIsbn){
@@ -10,43 +10,63 @@ class Book  {
         this.Author = bookAuthor ; 
         this.bookIsbn  = bookIsbn;
     }
-    add(title , writer , isbnumber){
-        this.bookArr.push(title,writer,isbnumber);
-        this.createUi();
-    }
-    show(){
-        return this.bookArr;
-    }
-    makeUi(){
-        let bookData  = document.createElement('div');
-        let bookTitle  = document.createElement('p');
-        bookTitle.innerText = this.title;
-        let bookAuthor  = document.createElement('p');
-        bookAuthor.innerText = this.Author;
-        let bookIsbn  = document.createElement('p');
-        bookIsbn.innerText = this.bookIsbnl
-        let button  = document.createElement('❌');
-        bookData.append(bookTitle,bookAuthor,bookIsbn,button);
-        root.append(bookData);
-    }
-    createUi(){
-        this.bookArr.forEach(eachBook=>{
-            eachBook.makeUi();
-        })
-    }
+
 }
-class bookList{
+class BookList{
     constructor(){
         this.bookArray = [];
     }
+    add(title , writer , isbnumber){
+        let book = new Book(title , writer ,isbnumber)
+        this.bookArray.push(book);
+        this.createUi();
+    }
+      
+    createUi(){
+     root.innerHTML = "";
+      this.bookArray.forEach((eachbook,index)=>{
+        let bookData  = document.createElement('div');
+        bookData.classList.add('bookData');
+        let bookTitle  = document.createElement('p');
+        bookTitle.innerText = eachbook.title;
+        let bookAuthor  = document.createElement('p');
+        bookAuthor.innerText = eachbook.Author;
+        let bookIsbn  = document.createElement('p');
+        bookIsbn.classList.add('last-p');
+        bookIsbn.innerText = eachbook.bookIsbn;
+        let span = document.createElement('span');
+        span.innerHTML = `❌`;
+        bookData.setAttribute("data-id" ,index);
+        span.setAttribute("data-id" , index);
+        // Onclick the btn todo gets delete 
+        span.addEventListener("click",()=>{
+            //  this.bookArray.splice(id , 1);
+            //  createUi();
+            let id = span.dataset.id;
+            let elementIndex = Number(id);
+            this.bookArray.splice(elementIndex);
+            this.createUi();
+        });
+
+
+       
+        bookData.append(bookTitle,bookAuthor,bookIsbn,span);
+        root.append(bookData);
+
+      });
+    }
 }
 
 
-let addBook = new Book();
+let addBook = new BookList();
 
 input.addEventListener('click',function(event){
     event.preventDefault();
-    addBook.add(bookName.value , authorName.value ,isbnNumber.value);
-    
+    const name  = bookName.value;
+    const author = authorName.value;
+    const isb = isbNumber.value;
+    addBook.add(name,author,isb);
+    bookName.value = "";
+    authorName.value = "";
+    isbNumber.value = "";
 });
-console.log(addBook.show());

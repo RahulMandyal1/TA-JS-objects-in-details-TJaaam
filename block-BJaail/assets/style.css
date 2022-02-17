@@ -54,4 +54,18 @@ section {
       font-size: 2rem;
       font-weight: 500; }
 
+.bookData {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.7rem;
+  padding: .8rem;
+  background-color: #ddd;
+  position: relative; }
+  .bookData span {
+    position: absolute;
+    right: 0; }
+  .bookData .last-p {
+    margin-right: 2rem; }
+
 /*# sourceMappingURL=style.css.map */
