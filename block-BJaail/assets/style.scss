@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;   
+    font-family: 'Poppins',sans-serif;
+}
+$primary : #008CBA;
+
+html{
+    font-size: 62.5%;
+}
+body{
+    padding: 6rem 11%;
+}
+section{
+    width: 100%;
+    header{
+        flex:  1 1 100%;
+        font-size: 5rem;
+        font-weight: normal;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        i{
+            color: $primary;
+        }
+    }
+    h1{
+        font-weight: normal;
+    }
+    label{
+        font-size: 2rem;
+        margin: 2rem 0;
+    }
+    .inputbox{
+        width: 100%;
+        display:block;
+        padding: .8rem ;
+        background-color: none;
+        border: 1px solid #777;
+        margin-bottom: 1rem;
+    }
+    button{
+        display: inline-block;
+        width:100%;
+        padding: .8rem;
+        font-size: 1.5rem;
+        background-color: $primary;
+        margin: 2rem 0 0 0 ;
+        border: none;
+        color: #fff;
+    }
+    .showContent-container{
+        width: 100%;
+        margin-top: 1rem;
+        .book-list-heading{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-top: .1rem solid  #dddd;
+            font-size: 2rem;
+            font-weight: 500;
+
+        }
+    }
+}
+.bookData{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.7rem;
+    padding:.8rem;
+    background-color: #ddd;
+    position: relative;
+    span{
+        position: absolute;
+        right: 0;
+        
+    }
+    .last-p{
+        margin-right:2rem;
+    }
+}
+
